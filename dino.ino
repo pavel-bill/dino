@@ -96,10 +96,7 @@ void checkCollisions(){
         }
       }
     }
-
   }
-  
-
 }
 void createCactus(){
   cactusPosX=7;
@@ -113,31 +110,25 @@ void createApple(){
   appleExists=true;
 }
 
-
 void loop() {
   // put your main code here, to run repeatedly:
-
   delay(200);
   memset(m,0,64);
-  
+ 
   if (gameStatus==0){   
-    memcpy(m+4,dino,32*sizeof(char));
-    
+    memcpy(m+4,dino,32*sizeof(char));    
   }
   
   if (gameStatus==1){
-   
-  
-
   if ((dinoJump==1)&&(dinoPos<3)){
     dinoPos++;
   }
+  
   if ((dinoJump==2)&&(dinoPos>0)){
     dinoPos--;
     if (dinoPos==0){dinoJump=0;}
   }
   if(dinoPos>=3) {dinoJump=2;}
-
     
   if ((dinoJump==0)&&(offset==0)){offset=4;}
     else if ((dinoJump==0)&&(offset==4)){offset=0;}
@@ -160,18 +151,15 @@ void loop() {
   
   
   memcpy(m+4-dinoPos,dino+offset,32*sizeof(char));
-  checkCollisions();
-  //dinoPos+=dinoJump;
+  checkCollisions();  
   }
 
 
-  if (gameStatus==2){
-    
-    memcpy(m+4,dino+8,32*sizeof(char));
-    
+  if (gameStatus==2){    
+    memcpy(m+4,dino+8,32*sizeof(char));    
   }
   prepareFrame();
-  printFrame();
+  FastLED.show();
 }
 
 void prepareFrame(){
@@ -198,8 +186,4 @@ void prepareFrame(){
       }
     }
   }
-}
-
-void printFrame(){
-   FastLED.show();
 }
